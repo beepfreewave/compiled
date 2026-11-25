@@ -2284,7 +2284,7 @@ local function drawCJPreview()
         local fill = tonumber(cfg.espBoxFillColor) or 0x665555FF
         local alpha = math.max(0.05, math.min(0.65, tonumber(cfg.espBoxFillAlpha) or 0.25))
         local a = math.floor(alpha * 255)
-        fill = (fill & 0x00FFFFFF) | (a << 24)
+        fill = (fill % 0x1000000) + (a * 0x1000000)
         dl:AddRectFilled(imgui.ImVec2(boxLeft+2, boxTop+2), imgui.ImVec2(boxRight-2, boxBottom-2), fill, 2)
     end
 
